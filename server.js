@@ -2,12 +2,25 @@ require("dotenv").config();
 const PORT = process.env.PORT;
 const express = require("express");
 const path = require("path");
+const fs = require("fs/promises");
 
 const server = express();
 
 server.use(express.static("public"));
+server.use(express.json());
 
 server.listen(PORT, () => console.log("listening on port", PORT));
+
+server.get("/api/notes", async (req, res) => {
+  try {
+    const notes = JSON.parse(
+      await fs.readFile(path.join(__dirname, "db/db.json"))
+    );
+    res.send(notes);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
 
 server.get("/notes", (req, res) => {
   res.sendFile(path.join(__dirname, "public/notes.html"));
