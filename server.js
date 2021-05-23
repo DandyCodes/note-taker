@@ -19,7 +19,6 @@ server.get("/api/notes", async (req, res) => {
     );
     res.json(notes);
   } catch (err) {
-    console.log(err);
     res.status(500).send(err);
   }
 });
@@ -46,7 +45,6 @@ server.post("/api/notes", async (req, res) => {
     );
     res.status(200).send(newNote);
   } catch (err) {
-    console.log(err);
     res.status(500).send(err);
   }
 });
@@ -64,7 +62,6 @@ server.delete("/api/notes/:id", async (req, res) => {
     );
     res.status(200).json(newNotes);
   } catch (err) {
-    console.log(err);
     res.status(500).send(err);
   }
 });
