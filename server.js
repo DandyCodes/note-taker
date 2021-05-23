@@ -3,6 +3,7 @@ const PORT = process.env.PORT;
 const express = require("express");
 const path = require("path");
 const fs = require("fs/promises");
+const { v4: uuidv4 } = require("uuid");
 
 const server = express();
 
@@ -30,6 +31,7 @@ server.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "public/index.html"));
 });
 
-server.post("/api/notes", async (req, res) => {
+server.post("/api/notes", (req, res) => {
   console.log(req.body);
+  console.log(uuidv4());
 });
