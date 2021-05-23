@@ -29,3 +29,7 @@ server.get("/notes", (req, res) => {
 server.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "public/index.html"));
 });
+
+server.post("/api/notes", async (req, res) => {
+  console.log(req.body);
+});
